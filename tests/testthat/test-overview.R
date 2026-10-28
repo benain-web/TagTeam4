@@ -1,6 +1,5 @@
 source(file.path("..", "..", "R", "calc_overview.R"))
 
-# Two members over two full Mon-Sun weeks (2016-04-18 to 2016-05-01)
 make_daily <- function() {
   dates <- seq(as.Date("2016-04-18"), as.Date("2016-05-01"), by = "day")
   rbind(
@@ -39,8 +38,8 @@ test_that("weekly target counts only complete weeks", {
   df <- make_daily()
   ws <- weekly_target_summary(df, target = 150)
   expect_equal(ws$weeks_tracked, c(2, 2))
-  expect_equal(ws$weeks_met[ws$Id == "A"], 2)   # 30 x 7 = 210 mins
-  expect_equal(ws$weeks_met[ws$Id == "B"], 0)   # 10 x 7 = 70 mins
+  expect_equal(ws$weeks_met[ws$Id == "A"], 2)
+  expect_equal(ws$weeks_met[ws$Id == "B"], 0)
 
   partial <- df[df$Date != as.Date("2016-05-01"), ]
   expect_equal(weekly_target_summary(partial)$weeks_tracked, c(1, 1))

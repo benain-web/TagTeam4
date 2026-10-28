@@ -1,7 +1,4 @@
-# Standalone app for the Overview page, until the team skeleton (app.R) exists.
-# Run from the repo root:  shiny::runApp("app_overview.R")
-# Set FITBIT_DATA_DIR to the folder containing the Fitbit CSVs, or copy them into data-raw/.
-
+# Set FITBIT_DATA_DIR to the Fitbit CSV folder, then run shiny::runApp("app_overview.R")
 library(shiny)
 library(bslib)
 library(plotly)
