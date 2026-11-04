@@ -49,12 +49,13 @@ prepare_sleep <- function(sleep) {
 
 #Filter sleep data by selected members and dates
 filter_sleep <- function(sleep, members, dates) {
-  sleep <- prepare_sleep(sleep
+  sleep <- prepare_sleep(
   sleep %>%
     filter(
       Id %in% members,
       between(SleepDay, dates[1], dates[2])
     )
+  )
 }
 
 #Calculate leaderboard
