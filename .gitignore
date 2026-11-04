@@ -218,6 +218,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+.Rproj.user
 
 # Fitbit raw data (download from Moodle, do not commit)
 data-raw/
