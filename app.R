@@ -7,19 +7,24 @@ library(DT)
 
 source("R/calc_overview.R")
 source("R/mod_overview.R")
+source("R/calc_sleep.R")
+source("R/mod_sleep.R")
 
 data_dir <- Sys.getenv("FITBIT_DATA_DIR", "data-raw")
 daily <- load_daily_activity(data_dir)
 
+sleep <- read.csv("data-raw/sleepDay_merged.csv", stringsAsFactors = FALSE)
+sleep <- prepare_sleep(sleep)
+
 # Create UI and wrap using shinymanager for login
 ui <- page_navbar(
   title = "Fitbit Group Dashboard",
-  nav_panel("Overview", overviewUI("overview", sort(unique(daily$Id)), range(daily$Date)))
+  nav_panel("Overview", overviewUI("overview", sort(unique(daily$Id)), range(daily$Date))),
   # nav_panel("Training", trainingUI("training")),
   # nav_panel("Workouts", workoutsUI("workouts")),
   # nav_panel("Heartrate", heartrateUI("heartrate")),
-  # nav_panel("Sleep", sleepUI("sleep")),
-  # nav_panel("Coverage", coverageUI("coverage"))
+  nav_panel("Sleep", sleepUI("sleep", sort(unique(sleep$Id)),range(sleep$SleepDay))),
+  # nav_panel("Coverage", coverageUI("coverage")),
 )
 ui <- secure_app(ui, timeout = 15)
 
@@ -29,7 +34,7 @@ server <- function(input, output, session) {
   secure_server(check_credentials = check_credentials("www/credentials.sqlite"))
 #   
   overviewServer("overview", daily)
-  # sleepServer()
+  sleepServer("sleep", sleep)
 }
 
 shinyApp(ui, server)
