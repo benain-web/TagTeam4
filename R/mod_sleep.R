@@ -34,7 +34,7 @@ sleepUI <- function(id, members, date_range) {
     #Dashboard layout
     layout_columns(
       
-      col_widths = c(12, 6, 6),
+      col_widths = c(12, 6, 6, 12),
       
       #Leaderboard
       card(
@@ -56,6 +56,13 @@ sleepUI <- function(id, members, date_range) {
         full_screen = TRUE,
         card_header("Weekly sleep patterns"),
         plotlyOutput(ns("weeks_plot"))
+      ),
+      
+      # Raw data
+      card(
+        full_screen = TRUE,
+        card_header("Raw data"),
+        DTOutput(ns("raw_table"))
       )
     )
   )
@@ -125,9 +132,8 @@ sleepServer <- function(id, sleep) {
     # 4. Leaderboard table
     output$lb_table <- renderDT({
       
-      datatable(
+      data_table(
         lb(),
-        rownames = FALSE,
         colnames = c(
           "Rank",
           "Member",
@@ -135,9 +141,24 @@ sleepServer <- function(id, sleep) {
           "Average sleep (hours)",
           "Average time in bed (hours)",
           "Sleep efficiency (%)"
-        ),
-        options = list(pageLength = 10)
-      )
+        )
+      ) %>%
+        formatRound(4:6, 2)
+    })
+    
+    
+    # Raw data table
+    output$raw_table <- renderDT({
+      
+      d <- filtered()
+      
+      validate(need(
+        nrow(d) > 0,
+        "No sleep data available for this selection."
+      ))
+      
+      data_table(d) %>%
+        formatRound(c("sleep_hours", "time_in_bed_hours", "sleep_efficiency"), 2)
     })
     
     

@@ -7,13 +7,14 @@ overviewUI <- function(id, members, dates) {
       selectInput(ns("sort_by"), "Rank leaderboard by", OVERVIEW_METRICS)
     ),
     layout_columns(
-      col_widths = c(12, 6, 6),
+      col_widths = c(12, 6, 6, 12),
       card(full_screen = TRUE, card_header("Leaderboard"),
            plotlyOutput(ns("lb_plot")), DTOutput(ns("lb_table"))),
       card(full_screen = TRUE, card_header("Progress towards 10,000 daily steps"),
            plotlyOutput(ns("goal_plot"))),
       card(full_screen = TRUE, card_header("Weeks meeting 150 active minutes"),
-           plotlyOutput(ns("weeks_plot")))
+           plotlyOutput(ns("weeks_plot"))),
+      card(full_screen = TRUE, card_header("Raw data"), DTOutput(ns("raw_table")))
     )
   )
 }
@@ -39,9 +40,15 @@ overviewServer <- function(id, daily) {
                yaxis = list(title = ""))
     })
 
-    output$lb_table <- renderDT(datatable(lb(), rownames = FALSE, colnames = c(
+    output$lb_table <- renderDT(data_table(lb(), colnames = c(
       "Rank", "Member", "Days", "Avg steps", "Avg distance (km)",
       "Avg active mins", "Avg calories")))
+
+    output$raw_table <- renderDT({
+      d <- filtered()
+      validate(need(nrow(d) > 0, "No activity data for this selection."))
+      data_table(d)
+    })
 
     output$goal_plot <- renderPlotly({
       d <- step_goal_progress(filtered())

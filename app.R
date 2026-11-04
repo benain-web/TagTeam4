@@ -5,6 +5,7 @@ library(shinymanager)
 library(plotly)
 library(DT)
 
+source("R/ui_helpers.R")
 source("R/calc_overview.R")
 source("R/mod_overview.R")
 source("R/calc_sleep.R")
@@ -14,7 +15,7 @@ source("R/mod_heartrate.R")
 data_dir <- Sys.getenv("FITBIT_DATA_DIR", "data-raw")
 daily <- load_daily_activity(data_dir)
 
-sleep <- read.csv("data-raw/sleepDay_merged.csv", stringsAsFactors = FALSE)
+sleep <- read.csv(file.path(data_dir, "sleepDay_merged.csv"), stringsAsFactors = FALSE)
 sleep <- prepare_sleep(sleep)
 
 # Create UI and wrap using shinymanager for login

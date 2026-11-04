@@ -9,9 +9,9 @@ viz_card <- function(title, output) {
 }
 
 # Raw data table with filtering, sorting and CSV download (REQ-16 to REQ-18)
-data_table <- function(df) {
+data_table <- function(df, ...) {
   datatable(df, rownames = FALSE, filter = "top", extensions = "Buttons",
-            options = list(dom = "Bfrtip", buttons = list("csv"), pageLength = 10))
+            options = list(dom = "Bfrtip", buttons = list("csv"), pageLength = 10), ...)
 }
 
 # Standard page: member and date filters on the left, content on the right (REQ-11, REQ-12).
