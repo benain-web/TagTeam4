@@ -40,7 +40,7 @@ test_that("weekly target counts only complete weeks", {
   expect_equal(ws$weeks_tracked, c(2, 2))
   expect_equal(ws$weeks_met[ws$Id == "A"], 2)
   expect_equal(ws$weeks_met[ws$Id == "B"], 0)
-  
+
   partial <- df[df$Date != as.Date("2016-05-01"), ]
   expect_equal(weekly_target_summary(partial)$weeks_tracked, c(1, 1))
 })
