@@ -1,0 +1,45 @@
+---
+title: "Sam Holland TAG Personal Reflections"
+output: html_document
+date: "2026-11-13"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Week 1
+
+In this first meeting I offered propositions for our workflow. The main one being that, to save time, we should look to develop a skeleton dashboard alongside our Exploratory Data Analysis to prevent bottlenecks in development. I also suggested that a leaderboard would be a simple addition to our dashboard to help meet requirements on user comparison.
+
+This week was used by the group mainly to plan, which I helped initiate by creating and using an interactive action planner which we could all contribute to. We all joined a created github repo, and agreed to come back next week having watched the required video and each draft a set of user requirements based on the brief which we could look to meet in our workflow.
+
+## Week 2
+
+With more time ahead to implement our ideas, this week focussed on collective task allocation preparing for implementation. I explained some of the advantages of using RShiny in this project drawing on my prior workplace experience, and proposed 17 user requirements I had drafted following Week 1's meeting.
+
+For more personal actions, I agreed to take on the objective of creating the aforementioned skeleton for the dashboard. The first step is to properly match the file structure to our agreed plans, ensuring a rudimentary UI and server so that the app opens for others to build from. Additionally, this included a login page with timeout measures to allow for user authentication so that the group's data is well protected, only allowing access for members.
+
+## Week 3
+
+Our meeting in Week 3 was used as a chance to come together and share our progress on our assigned tasks. For example, my login page was now fully functional and securely stored hashed credentials for 2 dummy users, opening to a blank page. With the others having performed their relevant Exploratory Data Analysis, we could now agree to look to implement our full app integration with their produced visualisations ahead of the deadline next week.
+
+I agreed that, having the most knowledge of how the app itself worked, I would look to merge all of their feature branches together following the completion of their pages and tie them all into the overarching application. This would allow for seamless user navigation across pages, which all followed the unified template for consistency.
+
+## Week 4 
+
+Now our application is all complete and fully working. We discussed relevant points from our sections to look to include in our conclusionary video. On my part this included the login page reacting to a successful and unsuccessful attempt, before adding my thoughts on how best to explain the navigation we had implemented and our use of RShiny.
+
+Unfortunately my power went out just before we were due to proceed with the creation of the video so I could not be involved as I needed to go to buy some more credit and top it up. However, I returned in time to offer feedback on said video before submission. The final week will involve wrapping up the documentation and submitting the last relevant pieces for the project.
+
+## Week 5
+
+I watched the submissions of the other groups, noting a few sentences for each on my thoughts for what they had produced. I will look to write a few overall reflections on the project below before submission.
+
+## Overall
+
+I found the project was more difficult for our group as we had various individual circumstances that meant we didn't have the dedicated time as a whole team that the project needed. As such, more sophisticated planning and ways of working that would have been ideal were not properly used.
+
+I think the application itself is a good piece, fully working and offers choices for statistics a user can view. I think that the interface could be more user friendly, and their could have been more sections for a user to look at.
+
+Personally, I can see how I would not score so highly as an individual if this were the real group project. I took it upon myself to do the brunt of the repo management and app development, sacrificing my contribution to the EDA and producing visualisations, for example. This would mean that I would not be meeting those relevant KSBs, severely hurting my personal grade. I will look to try and have a more balanced and ranged contribution in the preceding project.
